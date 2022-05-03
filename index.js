@@ -1,5 +1,10 @@
 displayData();
 
+
+document.getElementById("invalid_name").style.display = "none";
+document.getElementById("invalid_email").style.display = "none";
+document.getElementById("invalid_phone").style.display = "none";
+
 var valid_name, valid_email, valid_number;
 var regexForName = /^([a-zA-Z]+|[a-zA-Z]+\s{1}[a-zA-Z]{1,}|[a-zA-Z]+\s{1}[a-zA-Z]{3,}\s{1}[a-zA-Z]{1,})$/i;
 var regexForEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -52,15 +57,13 @@ function validateData(input_name, email, phone) {
         document.getElementById("phone").style.borderColor = "green";
     }
 
-    // console.log(input_name);
-    // console.log(email);
-    // console.log(phone);
-    // console.log(valid_name);
-    // console.log(valid_phone);
-    // console.log(valid_email);
 
     if((!valid_name || !valid_email)) {
-        alert("Fill The Details Properly");
+        if(!valid_name) {
+            alert("Please fill the name correctly.");
+        } else if(!valid_email) {
+            alert("Please fill the email correctly.");
+        }
     } else {
         let data = new Array();
         data = JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[];
